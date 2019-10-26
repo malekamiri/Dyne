@@ -13,6 +13,9 @@
 		D17EA55023642681000F0562 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D17EA54E23642681000F0562 /* Main.storyboard */; };
 		D17EA55223642684000F0562 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D17EA55123642684000F0562 /* Assets.xcassets */; };
 		D17EA55523642684000F0562 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D17EA55323642684000F0562 /* LaunchScreen.storyboard */; };
+		D17EA55D2364329F000F0562 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA55C2364329F000F0562 /* Restaurant.swift */; };
+		D17EA55F23643383000F0562 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA55E23643383000F0562 /* FoodItem.swift */; };
+		D17EA56123643430000F0562 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA56023643430000F0562 /* RestaurantCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		D17EA55123642684000F0562 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D17EA55423642684000F0562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D17EA55623642684000F0562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D17EA55C2364329F000F0562 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		D17EA55E23643383000F0562 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		D17EA56023643430000F0562 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,9 @@
 				D17EA55123642684000F0562 /* Assets.xcassets */,
 				D17EA55323642684000F0562 /* LaunchScreen.storyboard */,
 				D17EA55623642684000F0562 /* Info.plist */,
+				D17EA55C2364329F000F0562 /* Restaurant.swift */,
+				D17EA55E23643383000F0562 /* FoodItem.swift */,
+				D17EA56023643430000F0562 /* RestaurantCell.swift */,
 			);
 			path = Dyne;
 			sourceTree = "<group>";
@@ -138,9 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17EA56123643430000F0562 /* RestaurantCell.swift in Sources */,
+				D17EA55D2364329F000F0562 /* Restaurant.swift in Sources */,
 				D17EA54D23642681000F0562 /* ViewController.swift in Sources */,
 				D17EA54923642681000F0562 /* AppDelegate.swift in Sources */,
 				D17EA54B23642681000F0562 /* SceneDelegate.swift in Sources */,
+				D17EA55F23643383000F0562 /* FoodItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
