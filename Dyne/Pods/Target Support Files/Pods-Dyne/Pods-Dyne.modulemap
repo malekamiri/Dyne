@@ -1,0 +1,6 @@
+framework module Pods_Dyne {
+  umbrella header "Pods-Dyne-umbrella.h"
+
+  export *
+  module * { export * }
+}
