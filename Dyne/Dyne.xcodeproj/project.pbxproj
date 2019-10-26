@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D113DD102364D01A0043918F /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D113DD0F2364D01A0043918F /* OrderViewController.swift */; };
+		D113DD122364E7010043918F /* FoodCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D113DD112364E7010043918F /* FoodCartCell.swift */; };
 		D17EA54923642681000F0562 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA54823642681000F0562 /* AppDelegate.swift */; };
 		D17EA54B23642681000F0562 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA54A23642681000F0562 /* SceneDelegate.swift */; };
 		D17EA54D23642681000F0562 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA54C23642681000F0562 /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D113DD0F2364D01A0043918F /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		D113DD112364E7010043918F /* FoodCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCartCell.swift; sourceTree = "<group>"; };
 		D17EA54523642681000F0562 /* Dyne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dyne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D17EA54823642681000F0562 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D17EA54A23642681000F0562 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +51,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D15940BC2364C8590004067F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D17EA54C23642681000F0562 /* ViewController.swift */,
+				D17EA5622364B794000F0562 /* RestaurantViewController.swift */,
+				D113DD0F2364D01A0043918F /* OrderViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D15940BD2364C8780004067F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D17EA56023643430000F0562 /* RestaurantCell.swift */,
+				D17EA5642364BCBB000F0562 /* FoodItemCell.swift */,
+				D113DD112364E7010043918F /* FoodCartCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D15940BE2364C8A40004067F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D17EA55C2364329F000F0562 /* Restaurant.swift */,
+				D17EA55E23643383000F0562 /* FoodItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D17EA53C23642681000F0562 = {
 			isa = PBXGroup;
 			children = (
@@ -66,18 +99,15 @@
 		D17EA54723642681000F0562 /* Dyne */ = {
 			isa = PBXGroup;
 			children = (
+				D15940BE2364C8A40004067F /* Model */,
+				D15940BD2364C8780004067F /* View */,
+				D15940BC2364C8590004067F /* ViewController */,
 				D17EA54823642681000F0562 /* AppDelegate.swift */,
 				D17EA54A23642681000F0562 /* SceneDelegate.swift */,
-				D17EA54C23642681000F0562 /* ViewController.swift */,
 				D17EA54E23642681000F0562 /* Main.storyboard */,
 				D17EA55123642684000F0562 /* Assets.xcassets */,
 				D17EA55323642684000F0562 /* LaunchScreen.storyboard */,
 				D17EA55623642684000F0562 /* Info.plist */,
-				D17EA55C2364329F000F0562 /* Restaurant.swift */,
-				D17EA55E23643383000F0562 /* FoodItem.swift */,
-				D17EA56023643430000F0562 /* RestaurantCell.swift */,
-				D17EA5622364B794000F0562 /* RestaurantViewController.swift */,
-				D17EA5642364BCBB000F0562 /* FoodItemCell.swift */,
 			);
 			path = Dyne;
 			sourceTree = "<group>";
@@ -160,7 +190,9 @@
 				D17EA5652364BCBB000F0562 /* FoodItemCell.swift in Sources */,
 				D17EA54923642681000F0562 /* AppDelegate.swift in Sources */,
 				D17EA54B23642681000F0562 /* SceneDelegate.swift in Sources */,
+				D113DD122364E7010043918F /* FoodCartCell.swift in Sources */,
 				D17EA55F23643383000F0562 /* FoodItem.swift in Sources */,
+				D113DD102364D01A0043918F /* OrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
