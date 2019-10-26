@@ -25,15 +25,23 @@ class ViewController: UIViewController {
         restaurantTable.dataSource = self
         
         getRestaurants()
+
     }
     
     func getRestaurants() {
         restaurants = [Restaurant]()
-        let res1 = Restaurant(name: "Satto Thai and Sushi Bar", location: "768 Marietta St NW Suite A, Atlanta, GA 30318", openHour: 9, closeHour: 22, wait: 20)
-        let res2 = Restaurant(name: "WaGaYa", location: "339 14th St NW, Atlanta, GA 30318", openHour: 11, closeHour: 17, wait: 15)
-        restaurants?.append(res1)
-        restaurants?.append(res2)
-        restaurantTable.reloadData()
+//        let res1 = Restaurant(name: "Satto Thai and Sushi Bar", location: "768 Marietta St NW Suite A, Atlanta, GA 30318", openHour: 9, closeHour: 22, wait: 20)
+//        let res2 = Restaurant(name: "WaGaYa", location: "339 14th St NW, Atlanta, GA 30318", openHour: 11, closeHour: 17, wait: 15)
+//        restaurants?.append(res1)
+//        restaurants?.append(res2)
+        
+        getNearbyRestaurants { (restaurants) in
+            self.restaurants = restaurants
+            DispatchQueue.main.async {
+                self.restaurantTable.reloadData()
+            }
+        }
+        
         
     }
 

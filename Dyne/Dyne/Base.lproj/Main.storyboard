@@ -49,7 +49,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5bQ-O6-Aja">
-                                                    <rect key="frame" x="301" y="14" width="80.5" height="43"/>
+                                                    <rect key="frame" x="313.5" y="14" width="80.5" height="43"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.4/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7Z-rb-zaK">
                                                             <rect key="frame" x="20" y="0.0" width="40.5" height="20.5"/>
@@ -72,7 +72,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="VnD-cZ-3Ob" secondAttribute="bottom" constant="2.5" id="c3y-fG-D8p"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="5bQ-O6-Aja" secondAttribute="bottom" constant="2" id="jYF-Xy-NKQ"/>
                                                 <constraint firstItem="VnD-cZ-3Ob" firstAttribute="top" secondItem="Ak3-tu-8Mj" secondAttribute="topMargin" id="kGe-eM-RSf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="5bQ-O6-Aja" secondAttribute="trailing" constant="12.5" id="soh-k9-Mlg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5bQ-O6-Aja" secondAttribute="trailing" id="soh-k9-Mlg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

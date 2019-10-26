@@ -16,13 +16,17 @@ class Restaurant {
     var closeHour: Int
     var rating: Double
     var wait: Int
+    var clientId: String
+    var clientSecret: String
     
-    init(name: String, location: String, openHour: Int, closeHour: Int, wait: Int) {
+    init(name: String, location: String, openHour: Int, closeHour: Int, wait: Int, clientId: String, clientSecret: String) {
         self.name = name
         self.location = location
         self.openHour = openHour
         self.closeHour = closeHour
         self.rating = 4.4
         self.wait = wait
+        self.clientId = clientId
+        self.clientSecret = clientSecret
     }
 }

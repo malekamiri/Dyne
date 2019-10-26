@@ -49,3 +49,52 @@ func test() {
 
     dataTask.resume()
 }
+
+func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
+    let request = NSMutableURLRequest(url: NSURL(string: "https://gateway-staging.ncrcloud.com/site/sites/find-nearby/29.25,92?radius=1000000000&numSites=10&customAttributes=CREDENTIALS")! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+    request.httpMethod = "GET"
+    request.allHTTPHeaderFields = headers
+    let session = URLSession.shared
+    let dataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
+        if (error != nil) {
+            print(error)
+        } else {
+            let httpResponse = response as? HTTPURLResponse
+            if let dataUnwrapped = data {
+                do {
+                    let json = try JSON(data: dataUnwrapped)
+                    
+                    var restaurants = [Restaurant]()
+                    
+                    for i in 0..<json["sites"].count {
+                        
+                        print(json["sites"][i])
+                        let name = json["sites"][i]["siteName"].string ?? ""
+                        var location = json["sites"][i]["address"]["street"].string ?? ""
+                        location += json["sites"][i]["address"]["city"].string ?? ""
+                        location += ", "
+                        location += json["sites"][i]["address"]["state"].string ?? ""
+                        location += ", "
+                        location += json["sites"][i]["address"]["postalCode"].string ?? ""
+                        let openHour = 9
+                        let closeHour = 12
+                        let rating = 0
+                        let wait = 20
+                        let clientId = json["sites"][i]["customAttributeSets"]["attributes"][0]["value"].string ?? ""
+                        let clientSecret = json["sites"][i]["customAttributeSets"]["attributes"][1]["value"].string ?? ""
+                        
+                        restaurants.append(Restaurant(name: name, location: location, openHour: openHour, closeHour: closeHour, wait: wait, clientId: clientId, clientSecret: clientSecret))
+                        
+            
+                    }
+                    completion(restaurants)
+                } catch {
+                    print("json unwrapping error")
+                }
+            }
+        }
+    }
+
+
+    dataTask.resume()
+}

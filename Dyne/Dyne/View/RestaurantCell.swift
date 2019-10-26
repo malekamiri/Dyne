@@ -29,7 +29,7 @@ class RestaurantCell: UITableViewCell {
         restaurantNameLabel.text = restaurantName
         minWaitLabel.text = "Minimum wait time: \(minWait)"
         openLabel.text = open
-        ratingsLabel.text = "\(ratings)/5"
+        ratingsLabel.text = "\(ratings) ⭐️"
         
     }
 
