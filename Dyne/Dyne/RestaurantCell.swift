@@ -24,5 +24,13 @@ class RestaurantCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setUpCell(restaurantName: String, minWait: Int, open: String, ratings: Double) {
+        restaurantNameLabel.text = restaurantName
+        minWaitLabel.text = "Minimum wait time: \(minWait)"
+        openLabel.text = open
+        ratingsLabel.text = "\(ratings)/5"
+        
+    }
 
 }

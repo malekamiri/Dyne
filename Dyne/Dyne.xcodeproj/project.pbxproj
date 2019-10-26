@@ -16,6 +16,8 @@
 		D17EA55D2364329F000F0562 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA55C2364329F000F0562 /* Restaurant.swift */; };
 		D17EA55F23643383000F0562 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA55E23643383000F0562 /* FoodItem.swift */; };
 		D17EA56123643430000F0562 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA56023643430000F0562 /* RestaurantCell.swift */; };
+		D17EA5632364B794000F0562 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA5622364B794000F0562 /* RestaurantViewController.swift */; };
+		D17EA5652364BCBB000F0562 /* FoodItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EA5642364BCBB000F0562 /* FoodItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		D17EA55C2364329F000F0562 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		D17EA55E23643383000F0562 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		D17EA56023643430000F0562 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		D17EA5622364B794000F0562 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
+		D17EA5642364BCBB000F0562 /* FoodItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 				D17EA55C2364329F000F0562 /* Restaurant.swift */,
 				D17EA55E23643383000F0562 /* FoodItem.swift */,
 				D17EA56023643430000F0562 /* RestaurantCell.swift */,
+				D17EA5622364B794000F0562 /* RestaurantViewController.swift */,
+				D17EA5642364BCBB000F0562 /* FoodItemCell.swift */,
 			);
 			path = Dyne;
 			sourceTree = "<group>";
@@ -149,7 +155,9 @@
 			files = (
 				D17EA56123643430000F0562 /* RestaurantCell.swift in Sources */,
 				D17EA55D2364329F000F0562 /* Restaurant.swift in Sources */,
+				D17EA5632364B794000F0562 /* RestaurantViewController.swift in Sources */,
 				D17EA54D23642681000F0562 /* ViewController.swift in Sources */,
+				D17EA5652364BCBB000F0562 /* FoodItemCell.swift in Sources */,
 				D17EA54923642681000F0562 /* AppDelegate.swift in Sources */,
 				D17EA54B23642681000F0562 /* SceneDelegate.swift in Sources */,
 				D17EA55F23643383000F0562 /* FoodItem.swift in Sources */,
