@@ -170,8 +170,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func editProfile(_ sender: Any) {
-        let alert = UIAlertController(title: "Edit your profile", message: "Enter your information below", preferredStyle: .alert)
-
+        
+        var orderDescription = ""
+        
+        if let data = UserDefaults.standard.value(forKey: self.name) as? String {
+            
+            
+            orderDescription = data
+            
+            
+        }
+        
+        let alert = UIAlertController(title: "Edit your profile", message: orderDescription, preferredStyle: .alert)
+        
         alert.addTextField { (textField) in
             textField.placeholder = "Name"
         }
@@ -180,9 +191,13 @@ class ViewController: UIViewController {
             textField.textContentType = .telephoneNumber
         }
         
+        
         alert.addAction(UIAlertAction(title: "Set", style: .default) { (action) in
             self.name = alert.textFields?[0].text ?? "Daniel"
             self.phoneNumber = Int(alert.textFields?[1].text ?? "4045437582") ?? 4045437582
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive) { (action) in
+            
         })
 
         self.present(alert, animated: true)

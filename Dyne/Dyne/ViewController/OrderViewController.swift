@@ -130,6 +130,21 @@ class OrderViewController: UIViewController {
                         let dateTime = "\(date)T\(time)Z"
                         
                         sendOrder(items: cartt, restaurant: rest, date: dateTime, userName: name, partySize: Int(valueLabel?.text ?? "1") ?? 1)
+                        
+                        
+                        var cartItemNames = cartt.map { $0.name }
+                        var orderDescription = ""
+                        orderDescription += "Restaurant: \(rest.name as! String) \n"
+                        
+                        for item in cartItemNames {
+                            orderDescription += item
+                            orderDescription += ", "
+                        }
+                        orderDescription += "\n Date: \(date)"
+                        orderDescription += "\n Time: \(time)"
+                        UserDefaults.standard.set(orderDescription, forKey: name)
+                        
+                        
                         let alert = UIAlertController(title: "Reservation sent successfully!", message: "You will be expected at the restaurant at \(timeField.text ?? "00:00")", preferredStyle: .alert)
 
                         alert.addAction(UIAlertAction(title: "Great!", style: .default) { (alert) in
