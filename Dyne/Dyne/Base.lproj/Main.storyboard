@@ -185,6 +185,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dyne" id="4lu-Oy-RGg">
+                        <barButtonItem key="leftBarButtonItem" image="person.circle" catalog="system" id="Ul6-u3-0fe">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="editProfile:" destination="BYZ-38-t0r" id="TuV-gT-sjm"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Ql3-fw-pf3">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="URj-1b-PaQ">
                                 <rect key="frame" x="205" y="5.5" width="189" height="33"/>
@@ -409,13 +415,13 @@
                                         <rect key="frame" x="0.0" y="54" width="374" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reservation day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQp-0Q-U9e">
-                                                <rect key="frame" x="0.0" y="0.0" width="235.5" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p3S-AL-gTu">
-                                                <rect key="frame" x="285.5" y="0.0" width="88.5" height="34"/>
+                                                <rect key="frame" x="290" y="0.0" width="84" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -448,6 +454,7 @@
                                     <constraint firstItem="WpH-22-U1B" firstAttribute="leading" secondItem="9AU-vx-IiA" secondAttribute="leading" id="KXW-Kp-dOd"/>
                                     <constraint firstAttribute="trailing" secondItem="WpH-22-U1B" secondAttribute="trailing" id="WzH-Wc-468"/>
                                     <constraint firstAttribute="trailing" secondItem="sW4-Wm-Kp5" secondAttribute="trailing" id="Z0h-Ff-UvB"/>
+                                    <constraint firstItem="PGH-zJ-10e" firstAttribute="width" secondItem="p3S-AL-gTu" secondAttribute="width" id="jSP-qQ-O7O"/>
                                     <constraint firstItem="sW4-Wm-Kp5" firstAttribute="leading" secondItem="9AU-vx-IiA" secondAttribute="leading" id="lft-sP-7g9"/>
                                     <constraint firstAttribute="trailing" secondItem="vo5-ZZ-9x0" secondAttribute="trailing" id="whJ-2p-j46"/>
                                     <constraint firstItem="vo5-ZZ-9x0" firstAttribute="leading" secondItem="9AU-vx-IiA" secondAttribute="leading" id="xBQ-Bb-SnA"/>
@@ -568,4 +575,7 @@
             <point key="canvasLocation" x="-57.971014492753625" y="118.52678571428571"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="person.circle" catalog="system" width="64" height="62"/>
+    </resources>
 </document>

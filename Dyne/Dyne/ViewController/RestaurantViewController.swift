@@ -23,11 +23,14 @@ class RestaurantViewController: UIViewController {
     var image: UIImage?
     var name: String = ""
     
+    
+    var userName = "Daniel"
+    
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var viewOrderButton: UIButton!
     
     @IBOutlet weak var restaurantImage: UIImageView!
-    static func present(for restaurant: Restaurant, image: UIImage, in navigationController: UINavigationController) {
+    static func present(for restaurant: Restaurant, image: UIImage, userName: String, in navigationController: UINavigationController) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let restaurantVC = storyboard.instantiateViewController(withIdentifier: "restaurantViewController") as! RestaurantViewController
 
@@ -36,6 +39,8 @@ class RestaurantViewController: UIViewController {
         restaurantVC.restaurant = restaurant
         restaurantVC.image = image
         restaurantVC.name = restaurant.name
+        restaurantVC.userName = userName
+        print(userName)
         navigationController.pushViewController(restaurantVC, animated: true)
     }
     
@@ -95,7 +100,7 @@ class RestaurantViewController: UIViewController {
         
         if let cartUnwrapped = cart {
             if let nav = self.navigationController {
-                OrderViewController.present(for: cartUnwrapped, restaurant: restaurant!, in: nav)
+                OrderViewController.present(for: cartUnwrapped, restaurant: restaurant!, name: userName, in: nav)
             }
             
         }
