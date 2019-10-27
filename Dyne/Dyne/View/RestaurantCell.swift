@@ -30,6 +30,11 @@ class RestaurantCell: UITableViewCell {
         restaurantNameLabel.text = restaurantName
         minWaitLabel.text = "Minimum wait time: \(minWait)"
         openLabel.text = open
+        if (open == "Closed") {
+            openLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+        } else {
+            openLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        }
         ratingsLabel.text = "\(ratings) ⭐️"
         restaurantImage.image = image
         

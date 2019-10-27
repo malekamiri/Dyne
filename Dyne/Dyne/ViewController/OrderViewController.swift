@@ -24,6 +24,7 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
+    @IBOutlet weak var timeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,6 +72,13 @@ class OrderViewController: UIViewController {
         if let rest = restaurant {
             if let cartt = cart {
                 sendOrder(items: cartt, restaurant: rest, date: Date(), partySize: Int(valueLabel?.text ?? "1") ?? 1)
+                let alert = UIAlertController(title: "Reservation sent successfully!", message: "You will be expected at the restaurant at \(timeLabel.text ?? "00:00")", preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "Great!", style: .default) { (alert) in
+                    _ = self.navigationController?.popToRootViewController(animated: true)
+                })
+
+                self.present(alert, animated: true)
             }
             
         }

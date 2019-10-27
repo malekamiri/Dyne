@@ -10,7 +10,7 @@
         <!--Dyne-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Dyne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="firstVC" id="BYZ-38-t0r" customClass="ViewController" customModule="Dyne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -344,10 +344,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Aw-KZ-hF4">
-                                <rect key="frame" x="0.0" y="77" width="414" height="320"/>
+                                <rect key="frame" x="0.0" y="77" width="414" height="280"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="ovP-fo-5lJ"/>
+                                    <constraint firstAttribute="height" constant="280" id="ovP-fo-5lJ"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="foodCartCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="foodCartCell" rowHeight="70" id="UzL-tP-Rab" customClass="FoodCartCell" customModule="Dyne" customModuleProvider="target">
@@ -410,7 +410,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="9AU-vx-IiA">
-                                <rect key="frame" x="20" y="435" width="374" height="167"/>
+                                <rect key="frame" x="20" y="395" width="374" height="167"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="WpH-22-U1B">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
@@ -519,6 +519,7 @@
                     <connections>
                         <outlet property="stepper" destination="yAn-po-sZv" id="b5f-P6-yJz"/>
                         <outlet property="summaryTable" destination="8Aw-KZ-hF4" id="Ryo-Wu-vQG"/>
+                        <outlet property="timeLabel" destination="c5N-Ab-foX" id="ysc-Su-NLD"/>
                         <outlet property="totalLabel" destination="Ro3-Jl-uup" id="Tq0-Lz-h0g"/>
                         <outlet property="totalPriceLabel" destination="Ro3-Jl-uup" id="yaK-K7-e0t"/>
                         <outlet property="valueLabel" destination="EZt-sJ-Q3H" id="1m3-EG-3H9"/>

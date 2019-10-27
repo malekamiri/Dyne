@@ -40,6 +40,7 @@ class ViewController: UIViewController {
 
     }
     
+    
     func getRestaurants() {
         restaurants = [Restaurant]()
 //        let res1 = Restaurant(name: "Satto Thai and Sushi Bar", location: "768 Marietta St NW Suite A, Atlanta, GA 30318", openHour: 9, closeHour: 22, wait: 20)
@@ -142,7 +143,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             if let restaurant = restaurants?[indexPath.row] {
-                cell.setUpCell(restaurantName: restaurant.name, minWait: restaurant.wait, open: "Open Now", ratings: restaurant.rating, image: dict[restaurant.name]!)
+                var open = "Closed"
+                if (restaurant.name == "Naka Sushi" || restaurant.name == "Pasta Della Nona" || restaurant.name == "Le Fromage Grandiose") {
+                    open = "Open Now"
+                }
+                restaurants?[indexPath.row].openHour = open == "Open Now" ? 1 : 0
+                cell.setUpCell(restaurantName: restaurant.name, minWait: restaurant.wait, open: open, ratings: restaurant.rating, image: dict[restaurant.name]!)
             }
             
             return cell
@@ -164,7 +170,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if (tableView == restaurantTable) {
             if let restaurant = restaurants?[indexPath.row] {
                 if let nav = self.navigationController {
-                    RestaurantViewController.present(for: restaurant, image: dict[restaurant.name]!, in: nav)
+                    if (restaurant.openHour == 1) {
+                        RestaurantViewController.present(for: restaurant, image: dict[restaurant.name]!, in: nav)
+                    }
+                    
                 }
             }
         }
