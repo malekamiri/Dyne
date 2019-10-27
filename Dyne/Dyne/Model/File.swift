@@ -42,6 +42,7 @@ func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
                         
                         let name = json["sites"][i]["siteName"].string ?? ""
                         var location = json["sites"][i]["address"]["street"].string ?? ""
+                        location += ", "
                         location += json["sites"][i]["address"]["city"].string ?? ""
                         location += ", "
                         location += json["sites"][i]["address"]["state"].string ?? ""
@@ -171,7 +172,7 @@ func getItems(restaurant: Restaurant, completion: @escaping ([FoodItem]) -> ()) 
 }
 
 
-func sendOrder(items: [FoodItem], restaurant: Restaurant, date: Date, partySize: Int) {
+func sendOrder(items: [FoodItem], restaurant: Restaurant, date: String, partySize: Int) {
     let headers = [
         "Content-Type":"application/json",
         "Accept":"application/json",
@@ -184,7 +185,7 @@ func sendOrder(items: [FoodItem], restaurant: Restaurant, date: Date, partySize:
     }
     //let itemsFixedJson = JSON(itemsFixed)
 
-    let json: [String:Any] =  ["Orders": [["IsClosed": true,"OrderDateTime": Date().description,"OrderDueDateTime": date.description,"IsPaid": true,"Customer": ["CustomerId": 0,"CustomerName": "Daniel","Email": "abcde@email.com","PhoneNumber": "6782235758","Address1": "Address1","Address2": "string","Address3": "string","City": "string","State": "string","ZipCode": "string"],"CustomerId": 0,"CustomerName": "Daniel","TableReference": "Daniel","TaxAmount": 0,"TipAmount": 0,"LineItems": items2,"Notes": ["Dyne In\nParty Size: \(partySize)"],"KitchenLeadTimeInMinutes": 0,"SkipReceipt": true,"SkipKitchen": true]],"SourceApplicationName": "app"]
+    let json: [String:Any] =  ["Orders": [["IsClosed": true,"OrderDateTime": Date().description,"OrderDueDateTime": date,"IsPaid": true,"Customer": ["CustomerId": 0,"CustomerName": "Daniel","Email": "abcde@email.com","PhoneNumber": "6782235758","Address1": "Address1","Address2": "string","Address3": "string","City": "string","State": "string","ZipCode": "string"],"CustomerId": 0,"CustomerName": "Daniel","TableReference": "Daniel","TaxAmount": 0,"TipAmount": 0,"LineItems": items2,"Notes": ["Dyne In\nParty Size: \(partySize)"],"KitchenLeadTimeInMinutes": 0,"SkipReceipt": true,"SkipKitchen": true]],"SourceApplicationName": "app"]
     print(JSONSerialization.isValidJSONObject(json))
     
     

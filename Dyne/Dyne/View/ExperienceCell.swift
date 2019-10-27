@@ -32,10 +32,15 @@ class ExperienceCell: UITableViewCell {
         self.experienceNameLabel.text = experienceName
         self.restaurantLabel.text = restaurantName
         self.priceLabel.text = "$\(price)"
+        self.includesLabel.text = ""
         for item in includes {
-            self.includesLabel.text = self.includesLabel.text ?? "" + item.name
-            self.includesLabel.text = self.includesLabel.text ?? "" + ", "
+            self.includesLabel.text = self.includesLabel.text! + item.name
+            if (item.name != includes[includes.count - 1].name) {
+                self.includesLabel.text = self.includesLabel.text! + ", "
+            }
         }
+        
+
         
         self.experienceImage.image = image
         

@@ -23,6 +23,7 @@ class RestaurantViewController: UIViewController {
     var image: UIImage?
     var name: String = ""
     
+    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var viewOrderButton: UIButton!
     
     @IBOutlet weak var restaurantImage: UIImageView!
@@ -51,6 +52,8 @@ class RestaurantViewController: UIViewController {
         foodItemsTable.dataSource = self
         
         restaurantImage.image = image
+        
+        addressLabel.text = restaurant?.location
         
         getFoodItems()
 

@@ -100,13 +100,54 @@ class ViewController: UIViewController {
     }
     
     func getExperiences() {
+
         downloadImage(from: URL(string: "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/23559501_1978864502385005_7428896850850924322_n.jpg?_nc_cat=106&_nc_oc=AQm64mKKXTqJaYsH2g0dswHYxwl38NXsvSqbEDeJfGms_Hf9O8zSOEV07pWSh-0ABAiwxqerr3bdzeJuP8l8su3X&_nc_ht=scontent-atl3-1.xx&oh=d9879b9bafdb57018f46ffb169903d2b&oe=5E630681")!) { (image) in
-            let exp1 = Experience(name: "Birthday experience", restaurantName: "Satto Sushi", price: 15.0, includes: [FoodItem(name: "12 Sushis", price: 4, itemCategoryName: "SeaFood", externalItemId: "")], image: image)
-            self.experiences.append(exp1)
-            DispatchQueue.main.async {
-                self.experienceTable.reloadData()
-            }
-        }
+                    let exp1 = Experience(name: "Birthday experience", restaurantName: "Naka Sushi", price: 18.0, includes: [FoodItem(name: "Rainbow Roll", price: 12, itemCategoryName: "SeaFood", externalItemId: "789654"),FoodItem(name: "California Roll", price: 6, itemCategoryName: "SeaFood", externalItemId: "887562")], image: image)
+                    self.experiences.append(exp1)
+                    DispatchQueue.main.async {
+                        self.experienceTable.reloadData()
+                    }
+                }
+
+        downloadImage(from: URL(string: "https://i.pinimg.com/originals/00/b9/c7/00b9c753623605ed6739ee2b9a1636cf.jpg")!) { (image) in
+                    let exp2 = Experience(name: "Sounds Fishy", restaurantName: "Naka Sushi", price: 20.0, includes: [FoodItem(name: "Volcano Roll", price: 11, itemCategoryName: "SeaFood", externalItemId: "888999"),FoodItem(name: "Spicy Tuna", price: 9, itemCategoryName: "SeaFood", externalItemId: "666666")], image: image)
+                    self.experiences.append(exp2)
+                    DispatchQueue.main.async {
+                        self.experienceTable.reloadData()
+                    }
+                }
+
+        downloadImage(from: URL(string: "https://www.ourescapeclause.com/wp-content/uploads/2018/11/Colosseo-1170x789.jpg")!) { (image) in
+                    let exp3 = Experience(name: "Mama Mia!", restaurantName: "Pasta Della Nona", price: 38.0, includes: [FoodItem(name: "Fettuccine Carbonara", price: 20, itemCategoryName: "Pasta", externalItemId: "187758"),FoodItem(name: "Penne al Fungi", price: 18, itemCategoryName: "Pasta", externalItemId: "1711868")], image: image)
+                    self.experiences.append(exp3)
+                    DispatchQueue.main.async {
+                        self.experienceTable.reloadData()
+                    }
+                }
+
+        downloadImage(from: URL(string: "https://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1485966971/romantic-RES0217.jpg?itok=FgHpWDYI")!) { (image) in
+                    let exp4 = Experience(name: "Romantic Night", restaurantName: "Pasta Della Nona", price: 44.0, includes: [FoodItem(name: "Squid Ink Pasta", price: 19, itemCategoryName: "Pasta", externalItemId: "777666"),FoodItem(name: "Lobster Raviolli", price: 25, itemCategoryName: "Pasta", externalItemId: "577895")], image: image)
+                    self.experiences.append(exp4)
+                    DispatchQueue.main.async {
+                        self.experienceTable.reloadData()
+                    }
+                }
+
+        downloadImage(from: URL(string: "https://www.washingtonian.com/wp-content/uploads/2019/06/DC-4th-of-July-Brunch-Photo.jpg")!) { (image) in
+                    let exp5 = Experience(name: "Sunday Brunch", restaurantName: "Le Fromage Grandiose", price: 19.0, includes: [FoodItem(name: "Croque Madame", price: 10, itemCategoryName: "French", externalItemId: "235790"),FoodItem(name: "Eggs Benedict", price: 9, itemCategoryName: "French", externalItemId: "556123")], image: image)
+                    self.experiences.append(exp5)
+                    DispatchQueue.main.async {
+                        self.experienceTable.reloadData()
+                    }
+                }
+
+        downloadImage(from: URL(string: "https://i1.wp.com/www.followmeaway.com/wp-content/uploads/2019/06/best-cafes-in-Paris-header.jpg?resize=700%2C467&ssl=1")!) { (image) in
+                    let exp6 = Experience(name: "C'est la vie!", restaurantName: "Le Fromage Grandiose", price: 23.0, includes: [FoodItem(name: "Escargot", price: 15, itemCategoryName: "French", externalItemId: "666885"),FoodItem(name: "Aligot", price: 8, itemCategoryName: "French", externalItemId: "398147")], image: image)
+                    self.experiences.append(exp6)
+                    DispatchQueue.main.async {
+                        self.experienceTable.reloadData()
+                    }
+                }
         
     }
 
@@ -176,6 +217,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                     
                 }
             }
+        } else {
+            for rest in restaurants! {
+                if (rest.name == experiences[indexPath.row].restaurantName) {
+                    getItems(restaurant: rest) { (items) in
+                        OrderViewController.present(for: self.experiences[indexPath.row].includes, restaurant: rest, in: self.navigationController!)
+                    }
+                    
+                }
+            }
+            
         }
         
         

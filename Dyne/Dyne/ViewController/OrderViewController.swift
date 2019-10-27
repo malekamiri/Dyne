@@ -24,6 +24,8 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
+    @IBOutlet weak var dateField: UITextField!
+    @IBOutlet weak var timeField: UITextField!
     @IBOutlet weak var timeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +43,54 @@ class OrderViewController: UIViewController {
         stepper.value = 0
         stepper.minimumValue = 0
         stepper.maximumValue = 99
+        
+        
     }
     
+    @IBAction func editingDate(_ sender: UITextField) {
+        let datePickerView:UIDatePicker = UIDatePicker()
+         
+        datePickerView.datePickerMode = UIDatePicker.Mode.date
+         
+        sender.inputView = datePickerView
+         
+        datePickerView.addTarget(self, action: #selector(OrderViewController.datePickerValueChanged), for: UIControl.Event.valueChanged)
+    }
+    @objc func datePickerValueChanged(sender: UIDatePicker) {
+         
+        let dateFormatter = DateFormatter()
+         
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        dateFormatter.dateStyle = .medium
+//        dateFormatter.timeStyle = .none
+         
+        dateField.text = dateFormatter.string(from: sender.date)
+         
+    }
+    @IBAction func editingTime(_ sender: UITextField) {
+        let datePickerView: UIDatePicker = UIDatePicker()
+         
+        datePickerView.datePickerMode = UIDatePicker.Mode.time
+         
+        sender.inputView = datePickerView
+         
+        datePickerView.addTarget(self, action: #selector(OrderViewController.timePickerValueChanged), for: UIControl.Event.valueChanged)
+    }
+    @objc func timePickerValueChanged(sender: UIDatePicker) {
+         
+        let dateFormatter = DateFormatter()
+         
+        dateFormatter.dateFormat = "HH:mm:ss.SSS"
+//        dateFormatter.dateStyle = .none
+//        dateFormatter.timeStyle = .medium
+         
+        timeField.text = dateFormatter.string(from: sender.date)
+         
+    }
+    @IBAction func pressedOnScreen(_ sender: Any) {
+        timeField.resignFirstResponder()
+        dateField.resignFirstResponder()
+    }
     static func present(for cart: [FoodItem], restaurant: Restaurant, in navigationController: UINavigationController) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let orderVC = storyboard.instantiateViewController(withIdentifier: "orderViewController") as! OrderViewController
@@ -69,19 +117,28 @@ class OrderViewController: UIViewController {
     }
     
     @IBAction func sendOrderWasPressed(_ sender: Any) {
-        if let rest = restaurant {
-            if let cartt = cart {
-                sendOrder(items: cartt, restaurant: rest, date: Date(), partySize: Int(valueLabel?.text ?? "1") ?? 1)
-                let alert = UIAlertController(title: "Reservation sent successfully!", message: "You will be expected at the restaurant at \(timeLabel.text ?? "00:00")", preferredStyle: .alert)
+        
+        
+        if let time = timeField.text {
+            if let date = dateField.text {
+                if let rest = restaurant {
+                    if let cartt = cart {
+                        
+                        let dateTime = "\(date)T\(time)Z"
+                        
+                        sendOrder(items: cartt, restaurant: rest, date: dateTime, partySize: Int(valueLabel?.text ?? "1") ?? 1)
+                        let alert = UIAlertController(title: "Reservation sent successfully!", message: "You will be expected at the restaurant at \(timeField.text ?? "00:00")", preferredStyle: .alert)
 
-                alert.addAction(UIAlertAction(title: "Great!", style: .default) { (alert) in
-                    _ = self.navigationController?.popToRootViewController(animated: true)
-                })
+                        alert.addAction(UIAlertAction(title: "Great!", style: .default) { (alert) in
+                            _ = self.navigationController?.popToRootViewController(animated: true)
+                        })
 
-                self.present(alert, animated: true)
+                        self.present(alert, animated: true)
+                    }
+                }
             }
-            
         }
+        
         
     }
     
