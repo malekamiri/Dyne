@@ -11,9 +11,11 @@ import Foundation
 class FoodItem {
     var name: String
     var price: Double
+    var itemCategoryName: String
     
-    init(name: String, price: Double) {
+    init(name: String, price: Double, itemCategoryName: String) {
         self.name = name
         self.price = price
+        self.itemCategoryName = itemCategoryName
     }
 }

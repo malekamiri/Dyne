@@ -16,11 +16,12 @@ class Restaurant {
     var closeHour: Int
     var rating: Double
     var wait: Int
+    
     var clientId: String
     var clientSecret: String
-    var imageLink: String
+    var image_url: String
     
-    init(name: String, location: String, openHour: Int, closeHour: Int, wait: Int, clientId: String, clientSecret: String, imageLink: String) {
+    init(name: String, location: String, openHour: Int, closeHour: Int, wait: Int, clientId: String, clientSecret: String, image_url: String) {
         self.name = name
         self.location = location
         self.openHour = openHour
@@ -29,6 +30,6 @@ class Restaurant {
         self.wait = wait
         self.clientId = clientId
         self.clientSecret = clientSecret
-        self.imageLink = imageLink
+        self.image_url = image_url
     }
 }
