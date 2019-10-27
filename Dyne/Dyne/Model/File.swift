@@ -127,11 +127,11 @@ func getItems(restaurant: Restaurant, completion: @escaping ([FoodItem]) -> ()) 
                             do {
                             let json = try JSON(data: dataUnwrapped)
                             var foodItems = [FoodItem]()
-                            for i in 0..<json["Result"].count {
+                            for i in 0..<(json["Result"].count - 1) {
                                 let name = json["Result"][i]["Name"].string ?? ""
-                                let price = json["Result"][i]["RetailPrice"].string ?? ""
+                                let price = json["Result"][i]["RetailPrice"].double
                                 let itemCategoryName = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
-                                foodItems.append(FoodItem(name: name, price: Double(price) ?? 0, itemCategoryName: itemCategoryName))
+                                foodItems.append(FoodItem(name: name, price: price ?? 0, itemCategoryName: itemCategoryName))
                             }
                             completion(foodItems)
                         } catch{

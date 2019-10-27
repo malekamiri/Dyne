@@ -19,17 +19,21 @@ class RestaurantViewController: UIViewController {
     @IBOutlet weak var restaurantName: UILabel!
     @IBOutlet weak var restaurantAddress: UILabel!
     
+    var restaurant: Restaurant?
+    var image: UIImage?
     var name: String = ""
     
     @IBOutlet weak var viewOrderButton: UIButton!
     
-    static func present(for restaurant: Restaurant, in navigationController: UINavigationController) {
+    @IBOutlet weak var restaurantImage: UIImageView!
+    static func present(for restaurant: Restaurant, image: UIImage, in navigationController: UINavigationController) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let restaurantVC = storyboard.instantiateViewController(withIdentifier: "restaurantViewController") as! RestaurantViewController
 
 //        restaurantVC.distance = device.distance ?? (Double(device.RSSI ?? 0))
 //        restaurantVC.device = device
-        
+        restaurantVC.restaurant = restaurant
+        restaurantVC.image = image
         restaurantVC.name = restaurant.name
         navigationController.pushViewController(restaurantVC, animated: true)
     }
@@ -46,20 +50,32 @@ class RestaurantViewController: UIViewController {
         foodItemsTable.delegate = self
         foodItemsTable.dataSource = self
         
+        restaurantImage.image = image
+        
         getFoodItems()
 
     }
     
 
     func getFoodItems() {
-        var food1 = FoodItem(name: "Yellow Jacket Roll", price: 13.5)
-        var food2 = FoodItem(name: "California Roll", price: 15)
+//        var food1 = FoodItem(name: "Yellow Jacket Roll", price: 13.5)
+//        var food2 = FoodItem(name: "California Roll", price: 15)
         
-        foodItems?.append(food1)
-        foodItems?.append(food2)
+//        foodItems?.append(food1)
+//        foodItems?.append(food2)
+        
+//        getItems(restaurant: restaurant) { (items) in
+//            self.foodItems = items
+//        }
+        
+        getItems(restaurant: restaurant!) { (items) in
+            self.foodItems = items
+            DispatchQueue.main.async {
+                self.foodItemsTable.reloadData()
+            }
+        }
         
         
-        foodItemsTable.reloadData()
     }
     
     

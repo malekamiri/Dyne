@@ -116,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="EDx-oe-0Aa">
-                                <rect key="frame" x="20" y="49" width="374" height="137"/>
+                                <rect key="frame" x="20" y="162" width="374" height="137"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Satto Thai and Sushi Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwQ-Fc-PjM">
                                         <rect key="frame" x="0.0" y="0.0" width="217.5" height="23"/>
@@ -145,7 +145,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SuR-p6-7Gg">
-                                <rect key="frame" x="0.0" y="203" width="414" height="606"/>
+                                <rect key="frame" x="0.0" y="316" width="414" height="493"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="foodItemCell" rowHeight="70" id="AmE-sc-NzC" customClass="FoodItemCell" customModule="Dyne" customModuleProvider="target">
@@ -201,25 +201,35 @@
                                     <action selector="viewOrderWasPressed:" destination="FUF-Au-Qdm" eventType="touchUpInside" id="Zap-g2-PNG"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hwl-sR-ZRX">
+                                <rect key="frame" x="20" y="52" width="374" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="ofm-pT-iC2"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="1Co-iV-JSf" firstAttribute="trailing" secondItem="hwl-sR-ZRX" secondAttribute="trailing" constant="20" id="0Gm-Qn-SgB"/>
                             <constraint firstItem="Mmz-Tm-3vu" firstAttribute="trailing" secondItem="1Co-iV-JSf" secondAttribute="trailing" id="0rG-Jn-6wh"/>
+                            <constraint firstItem="hwl-sR-ZRX" firstAttribute="leading" secondItem="1Co-iV-JSf" secondAttribute="leading" constant="20" id="5kQ-hX-nSJ"/>
+                            <constraint firstItem="hwl-sR-ZRX" firstAttribute="top" secondItem="1Co-iV-JSf" secondAttribute="top" constant="8" id="DSe-PE-3ox"/>
                             <constraint firstItem="SuR-p6-7Gg" firstAttribute="trailing" secondItem="1Co-iV-JSf" secondAttribute="trailing" id="Ldb-Cg-Jdz"/>
                             <constraint firstItem="Mmz-Tm-3vu" firstAttribute="leading" secondItem="1Co-iV-JSf" secondAttribute="leading" id="MCM-gx-ZqJ"/>
                             <constraint firstItem="SuR-p6-7Gg" firstAttribute="top" secondItem="EDx-oe-0Aa" secondAttribute="bottom" constant="17" id="PUG-xF-lDy"/>
                             <constraint firstItem="SuR-p6-7Gg" firstAttribute="leading" secondItem="1Co-iV-JSf" secondAttribute="leading" id="UZQ-HV-Ar1"/>
                             <constraint firstItem="1Co-iV-JSf" firstAttribute="trailing" secondItem="EDx-oe-0Aa" secondAttribute="trailing" constant="20" id="Xj4-IX-KLZ"/>
                             <constraint firstItem="Mmz-Tm-3vu" firstAttribute="top" secondItem="SuR-p6-7Gg" secondAttribute="bottom" id="eYc-V0-7Jh"/>
+                            <constraint firstItem="EDx-oe-0Aa" firstAttribute="top" secondItem="hwl-sR-ZRX" secondAttribute="bottom" constant="10" id="onc-qZ-mBG"/>
                             <constraint firstItem="Mmz-Tm-3vu" firstAttribute="bottom" secondItem="1Co-iV-JSf" secondAttribute="bottom" id="pBn-4m-xff"/>
                             <constraint firstItem="EDx-oe-0Aa" firstAttribute="leading" secondItem="1Co-iV-JSf" secondAttribute="leading" constant="20" id="pwN-Ow-bfh"/>
-                            <constraint firstItem="EDx-oe-0Aa" firstAttribute="top" secondItem="1Co-iV-JSf" secondAttribute="top" constant="5" id="uCM-n5-MMa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Co-iV-JSf"/>
                     </view>
                     <connections>
                         <outlet property="foodItemsTable" destination="SuR-p6-7Gg" id="gkf-GS-mlw"/>
                         <outlet property="restaurantAddress" destination="L2h-jR-oG9" id="7tW-Fs-eoJ"/>
+                        <outlet property="restaurantImage" destination="hwl-sR-ZRX" id="1l4-gy-2Rb"/>
                         <outlet property="restaurantName" destination="VwQ-Fc-PjM" id="PPi-ZW-uYD"/>
                         <outlet property="viewOrderButton" destination="Mmz-Tm-3vu" id="DRh-oW-aHo"/>
                     </connections>

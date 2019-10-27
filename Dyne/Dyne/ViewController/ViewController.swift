@@ -14,7 +14,8 @@ class ViewController: UIViewController {
 
     
     var restaurants: [Restaurant]?
-    var images: [UIImage] = [UIImage]()
+    var dict: [String: UIImage] = [:]
+//    var images: [UIImage] = [UIImage]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,22 +42,32 @@ class ViewController: UIViewController {
         
         getNearbyRestaurants { (restaurants) in
             self.restaurants = restaurants
-            for restaurant in restaurants {
-                let url = URL(string: restaurant.imageLink)
-                self.downloadImage(from: url ?? URL(string: "https://thenypost.files.wordpress.com/2019/09/junk-food-turns-kid-blind.jpg?quality=90&strip=all&w=1236&h=820&crop=1")!) { (image) in
-                    if let img = image {
-                        self.images.append(img)
-                        DispatchQueue.main.async {
-                            if (self.images.count == restaurants.count) {
+            self.downloadImage(from: URL(string: "https://thenypost.files.wordpress.com/2019/09/junk-food-turns-kid-blind.jpg?quality=90&strip=all&w=1236&h=820&crop=1")!) { (image) in
+                
+                for restaurant in restaurants {
+                    self.dict[restaurant.name] = image!
+                }
+                
+                for restaurant in restaurants {
+                    //self.dict[restaurant.name] = image!
+                    let url = URL(string: restaurant.image_url)
+                    self.downloadImage(from: url ?? URL(string: "https://thenypost.files.wordpress.com/2019/09/junk-food-turns-kid-blind.jpg?quality=90&strip=all&w=1236&h=820&crop=1")!) { (image) in
+                        if let img = image {
+                            self.dict[restaurant.name] = img
+                            DispatchQueue.main.async {
+                                
                                 self.restaurantTable.reloadData()
+                                
                             }
                         }
+                        
+                        
                     }
                     
                     
                 }
-                
             }
+            
             
         }
         
@@ -93,7 +104,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         if let restaurant = restaurants?[indexPath.row] {
-            cell.setUpCell(restaurantName: restaurant.name, minWait: restaurant.wait, open: "Open Now", ratings: floor(Double.random(in: 3 ..< 5) * 10) / 10, image: images[indexPath.row])
+            cell.setUpCell(restaurantName: restaurant.name, minWait: restaurant.wait, open: "Open Now", ratings: floor(Double.random(in: 3 ..< 5) * 10) / 10, image: dict[restaurant.name]!)
         }
         
         return cell
@@ -103,7 +114,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         if let restaurant = restaurants?[indexPath.row] {
             if let nav = self.navigationController {
-                RestaurantViewController.present(for: restaurant, in: nav)
+                RestaurantViewController.present(for: restaurant, image: dict[restaurant.name]!, in: nav)
             }
         }
         
