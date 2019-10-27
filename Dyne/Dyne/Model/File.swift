@@ -52,8 +52,16 @@ func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
                         let rating = 0
                         let wait = 20
                         let image_url = json["sites"][i]["customAttributeSets"][0]["attributes"][0]["value"].string ?? ""
-                        let clientId = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["value"].string ?? ""
-                        let clientSecret = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
+                        let clientId: String;
+                        let clientSecret: String;
+                        var test = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["key"].string
+                        if (json["sites"][i]["customAttributeSets"][1]["attributes"][1]["key"].string == "client_id") {
+                            clientId = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["value"].string ?? ""
+                            clientSecret = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
+                        } else {
+                            clientId = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
+                            clientSecret = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["value"].string ?? ""
+                        }
                         
                         restaurants.append(Restaurant(name: name, location: location, openHour: openHour, closeHour: closeHour, wait: wait, clientId: clientId, clientSecret: clientSecret, image_url: image_url))
                         
@@ -66,8 +74,6 @@ func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
             }
         }
     }
-
-
     dataTask.resume()
 }
 
@@ -98,7 +104,7 @@ func getItems(restaurant: Restaurant, completion: @escaping ([FoodItem]) -> ()) 
             if let dataUnwrapped = data {
                 do {
                     let json = try JSON(data: dataUnwrapped)
-                    let AccessToken = "Bearer " + json["Result"]["AccessToken"].string! ?? ""
+                    let AccessToken = "Bearer " + (json["Result"]["AccessToken"].string ?? "")
                     let headers2 = [
                       "nep-application-key": "8a0384356ddb119e016e06e12eb40037",
                       "Authorization": AccessToken,
@@ -127,7 +133,7 @@ func getItems(restaurant: Restaurant, completion: @escaping ([FoodItem]) -> ()) 
                             do {
                             let json = try JSON(data: dataUnwrapped)
                             var foodItems = [FoodItem]()
-                            for i in 0..<(json["Result"].count - 1) {
+                            for i in 0..<(json["Result"].count) {
                                 let name = json["Result"][i]["Name"].string ?? ""
                                 let price = json["Result"][i]["RetailPrice"].double
                                 let itemCategoryName = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
