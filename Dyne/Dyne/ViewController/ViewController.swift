@@ -221,7 +221,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             for rest in restaurants! {
                 if (rest.name == experiences[indexPath.row].restaurantName) {
                     getItems(restaurant: rest) { (items) in
-                        OrderViewController.present(for: self.experiences[indexPath.row].includes, restaurant: rest, in: self.navigationController!)
+                        DispatchQueue.main.async {
+                            OrderViewController.present(for: self.experiences[indexPath.row].includes, restaurant: rest, in: self.navigationController!)
+                        }
+                        
                     }
                     
                 }
