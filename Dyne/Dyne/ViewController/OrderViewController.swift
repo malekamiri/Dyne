@@ -11,6 +11,8 @@ import UIKit
 class OrderViewController: UIViewController {
     
     var cart: [FoodItem]?
+    
+    var restaurant: Restaurant?
 
     @IBOutlet weak var summaryTable: UITableView!
     
@@ -21,6 +23,7 @@ class OrderViewController: UIViewController {
     
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,7 +42,7 @@ class OrderViewController: UIViewController {
         stepper.maximumValue = 99
     }
     
-    static func present(for cart: [FoodItem], in navigationController: UINavigationController) {
+    static func present(for cart: [FoodItem], restaurant: Restaurant, in navigationController: UINavigationController) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let orderVC = storyboard.instantiateViewController(withIdentifier: "orderViewController") as! OrderViewController
 
@@ -47,6 +50,7 @@ class OrderViewController: UIViewController {
 //        restaurantVC.device = device
         orderVC.cart = [FoodItem]()
         orderVC.cart = cart
+        orderVC.restaurant = restaurant
         navigationController.pushViewController(orderVC, animated: true)
     }
     
@@ -63,6 +67,15 @@ class OrderViewController: UIViewController {
         
     }
     
+    @IBAction func sendOrderWasPressed(_ sender: Any) {
+        if let rest = restaurant {
+            if let cartt = cart {
+                sendOrder(items: cartt, restaurant: rest, date: Date(), partySize: Int(valueLabel?.text ?? "1") ?? 1)
+            }
+            
+        }
+        
+    }
     
 
 }

@@ -21,12 +21,12 @@ class Restaurant {
     var clientSecret: String
     var image_url: String
     
-    init(name: String, location: String, openHour: Int, closeHour: Int, wait: Int, clientId: String, clientSecret: String, image_url: String) {
+    init(name: String, location: String, openHour: Int, closeHour: Int, wait: Int, clientId: String, clientSecret: String, image_url: String, rating: Double) {
         self.name = name
         self.location = location
         self.openHour = openHour
         self.closeHour = closeHour
-        self.rating = 4.4
+        self.rating = rating
         self.wait = wait
         self.clientId = clientId
         self.clientSecret = clientSecret

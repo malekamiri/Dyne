@@ -100,7 +100,7 @@ class ViewController: UIViewController {
     
     func getExperiences() {
         downloadImage(from: URL(string: "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/23559501_1978864502385005_7428896850850924322_n.jpg?_nc_cat=106&_nc_oc=AQm64mKKXTqJaYsH2g0dswHYxwl38NXsvSqbEDeJfGms_Hf9O8zSOEV07pWSh-0ABAiwxqerr3bdzeJuP8l8su3X&_nc_ht=scontent-atl3-1.xx&oh=d9879b9bafdb57018f46ffb169903d2b&oe=5E630681")!) { (image) in
-            let exp1 = Experience(name: "Birthday experience", restaurantName: "Satto Sushi", price: 15.0, includes: [FoodItem(name: "12 Sushis", price: 4, itemCategoryName: "SeaFood")], image: image)
+            let exp1 = Experience(name: "Birthday experience", restaurantName: "Satto Sushi", price: 15.0, includes: [FoodItem(name: "12 Sushis", price: 4, itemCategoryName: "SeaFood", externalItemId: "")], image: image)
             self.experiences.append(exp1)
             DispatchQueue.main.async {
                 self.experienceTable.reloadData()
@@ -142,7 +142,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             if let restaurant = restaurants?[indexPath.row] {
-                cell.setUpCell(restaurantName: restaurant.name, minWait: restaurant.wait, open: "Open Now", ratings: floor(Double.random(in: 3 ..< 5) * 10) / 10, image: dict[restaurant.name]!)
+                cell.setUpCell(restaurantName: restaurant.name, minWait: restaurant.wait, open: "Open Now", ratings: restaurant.rating, image: dict[restaurant.name]!)
             }
             
             return cell

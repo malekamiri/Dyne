@@ -49,7 +49,7 @@ func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
                         location += json["sites"][i]["address"]["postalCode"].string ?? ""
                         let openHour = 9
                         let closeHour = 12
-                        let rating = 0
+                        let rating = floor(Double.random(in: 3 ..< 5) * 10) / 10
                         let wait = 20
                         let clientId: String;
                         let clientSecret: String;
@@ -76,7 +76,7 @@ func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
                             image_url = json["sites"][i]["customAttributeSets"][0]["attributes"][0]["value"].string ?? ""
                         }
                         
-                        restaurants.append(Restaurant(name: name, location: location, openHour: openHour, closeHour: closeHour, wait: wait, clientId: clientId, clientSecret: clientSecret, image_url: image_url))
+                        restaurants.append(Restaurant(name: name, location: location, openHour: openHour, closeHour: closeHour, wait: wait, clientId: clientId, clientSecret: clientSecret, image_url: image_url, rating: rating))
                         
             
                     }

@@ -92,7 +92,7 @@ class RestaurantViewController: UIViewController {
         
         if let cartUnwrapped = cart {
             if let nav = self.navigationController {
-                OrderViewController.present(for: cartUnwrapped, in: nav)
+                OrderViewController.present(for: cartUnwrapped, restaurant: restaurant!, in: nav)
             }
             
         }
