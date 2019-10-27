@@ -19,6 +19,8 @@ class OrderViewController: UIViewController {
     
     var total: Double = 0
     
+    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var stepper: UIStepper!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +31,12 @@ class OrderViewController: UIViewController {
         calculateTotal()
         
         summaryTable.reloadData()
+        
+        
+        stepper.wraps = false
+        stepper.value = 0
+        stepper.minimumValue = 0
+        stepper.maximumValue = 99
     }
     
     static func present(for cart: [FoodItem], in navigationController: UINavigationController) {
@@ -50,7 +58,11 @@ class OrderViewController: UIViewController {
         
     }
     
-
+    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        valueLabel.text = String(Int(floor(sender.value)))
+        
+    }
+    
     
 
 }

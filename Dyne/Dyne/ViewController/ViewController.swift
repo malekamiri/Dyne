@@ -12,11 +12,14 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var restaurantTable: UITableView!
 
+    @IBOutlet weak var experienceTable: UITableView!
     
     var restaurants: [Restaurant]?
     var dict: [String: UIImage] = [:]
 //    var images: [UIImage] = [UIImage]()
 
+    var experiences = [Experience]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -26,7 +29,11 @@ class ViewController: UIViewController {
         restaurantTable.delegate = self
         restaurantTable.dataSource = self
         
+        experienceTable.delegate = self
+        experienceTable.dataSource = self
+        
         getRestaurants()
+        getExperiences()
         
         
         
@@ -90,33 +97,78 @@ class ViewController: UIViewController {
             
         }
     }
+    
+    func getExperiences() {
+        downloadImage(from: URL(string: "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/23559501_1978864502385005_7428896850850924322_n.jpg?_nc_cat=106&_nc_oc=AQm64mKKXTqJaYsH2g0dswHYxwl38NXsvSqbEDeJfGms_Hf9O8zSOEV07pWSh-0ABAiwxqerr3bdzeJuP8l8su3X&_nc_ht=scontent-atl3-1.xx&oh=d9879b9bafdb57018f46ffb169903d2b&oe=5E630681")!) { (image) in
+            let exp1 = Experience(name: "Birthday experience", restaurantName: "Satto Sushi", price: 15.0, includes: [FoodItem(name: "12 Sushis", price: 4, itemCategoryName: "SeaFood")], image: image)
+            self.experiences.append(exp1)
+            DispatchQueue.main.async {
+                self.experienceTable.reloadData()
+            }
+        }
+        
+    }
 
-
+    @IBAction func switchedTab(_ sender: UISegmentedControl) {
+        switch (sender.selectedSegmentIndex) {
+        case 0:
+            restaurantTable.isHidden = false
+            experienceTable.isHidden = true
+        case 1:
+            restaurantTable.isHidden = true
+            experienceTable.isHidden = false
+        default:
+            restaurantTable.isHidden = false
+            experienceTable.isHidden = true
+        }
+        
+    }
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurants == nil ? 0 : restaurants!.count
+        if tableView == restaurantTable {
+            return restaurants == nil ? 0 : restaurants!.count
+        } else {
+            return experiences.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = restaurantTable.dequeueReusableCell(withIdentifier: "restaurantCell") as? RestaurantCell else {
-            return UITableViewCell()
-        }
-        if let restaurant = restaurants?[indexPath.row] {
-            cell.setUpCell(restaurantName: restaurant.name, minWait: restaurant.wait, open: "Open Now", ratings: floor(Double.random(in: 3 ..< 5) * 10) / 10, image: dict[restaurant.name]!)
+        if (tableView == restaurantTable) {
+            guard let cell = restaurantTable.dequeueReusableCell(withIdentifier: "restaurantCell") as? RestaurantCell else {
+                return UITableViewCell()
+            }
+            if let restaurant = restaurants?[indexPath.row] {
+                cell.setUpCell(restaurantName: restaurant.name, minWait: restaurant.wait, open: "Open Now", ratings: floor(Double.random(in: 3 ..< 5) * 10) / 10, image: dict[restaurant.name]!)
+            }
+            
+            return cell
+        } else {
+            guard let cell = experienceTable.dequeueReusableCell(withIdentifier: "experienceCell") as? ExperienceCell else {
+                return UITableViewCell()
+            }
+
+            cell.setUpCell(experienceName: experiences[indexPath.row].name,  restaurantName: experiences[indexPath.row].restaurantName, price: experiences[indexPath.row].price, includes: experiences[indexPath.row].includes, image: experiences[indexPath.row].image)
+            
+            
+            return cell
         }
         
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let restaurant = restaurants?[indexPath.row] {
-            if let nav = self.navigationController {
-                RestaurantViewController.present(for: restaurant, image: dict[restaurant.name]!, in: nav)
+        if (tableView == restaurantTable) {
+            if let restaurant = restaurants?[indexPath.row] {
+                if let nav = self.navigationController {
+                    RestaurantViewController.present(for: restaurant, image: dict[restaurant.name]!, in: nav)
+                }
             }
         }
+        
         
     }
         
