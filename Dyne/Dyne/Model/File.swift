@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftyJSON
-
+var bearerToken = "";
 func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
     let headers = [
       "nep-application-key": "8a0384356ddb119e016e06e12eb40037",
@@ -51,16 +51,29 @@ func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
                         let closeHour = 12
                         let rating = 0
                         let wait = 20
-                        let image_url = json["sites"][i]["customAttributeSets"][0]["attributes"][0]["value"].string ?? ""
                         let clientId: String;
                         let clientSecret: String;
-                        var test = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["key"].string
-                        if (json["sites"][i]["customAttributeSets"][1]["attributes"][1]["key"].string == "client_id") {
-                            clientId = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["value"].string ?? ""
-                            clientSecret = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
+                        let image_url: String;
+                        if (json["sites"][i]["customAttributeSets"][1]["typeName"].string == "IMAGE") {
+                            var test = json["sites"][i]["customAttributeSets"][0]["attributes"][1]["key"].string
+                            if (json["sites"][i]["customAttributeSets"][0]["attributes"][1]["key"].string == "client_id") {
+                                clientId = json["sites"][i]["customAttributeSets"][0]["attributes"][1]["value"].string ?? ""
+                                clientSecret = json["sites"][i]["customAttributeSets"][0]["attributes"][0]["value"].string ?? ""
+                            } else {
+                                clientId = json["sites"][i]["customAttributeSets"][0]["attributes"][0]["value"].string ?? ""
+                                clientSecret = json["sites"][i]["customAttributeSets"][0]["attributes"][1]["value"].string ?? ""
+                            }
+                            image_url = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
                         } else {
-                            clientId = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
-                            clientSecret = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["value"].string ?? ""
+                            var test = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["key"].string
+                            if (json["sites"][i]["customAttributeSets"][1]["attributes"][1]["key"].string == "client_id") {
+                                clientId = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["value"].string ?? ""
+                                clientSecret = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
+                            } else {
+                                clientId = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
+                                clientSecret = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["value"].string ?? ""
+                            }
+                            image_url = json["sites"][i]["customAttributeSets"][0]["attributes"][0]["value"].string ?? ""
                         }
                         
                         restaurants.append(Restaurant(name: name, location: location, openHour: openHour, closeHour: closeHour, wait: wait, clientId: clientId, clientSecret: clientSecret, image_url: image_url))
@@ -76,7 +89,6 @@ func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
     }
     dataTask.resume()
 }
-
 func getItems(restaurant: Restaurant, completion: @escaping ([FoodItem]) -> ()) {
         let headers = [
           "Accept": "application/json",
@@ -105,6 +117,7 @@ func getItems(restaurant: Restaurant, completion: @escaping ([FoodItem]) -> ()) 
                 do {
                     let json = try JSON(data: dataUnwrapped)
                     let AccessToken = "Bearer " + (json["Result"]["AccessToken"].string ?? "")
+                    bearerToken = AccessToken
                     let headers2 = [
                       "nep-application-key": "8a0384356ddb119e016e06e12eb40037",
                       "Authorization": AccessToken,
@@ -136,8 +149,9 @@ func getItems(restaurant: Restaurant, completion: @escaping ([FoodItem]) -> ()) 
                             for i in 0..<(json["Result"].count) {
                                 let name = json["Result"][i]["Name"].string ?? ""
                                 let price = json["Result"][i]["RetailPrice"].double
-                                let itemCategoryName = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
-                                foodItems.append(FoodItem(name: name, price: price ?? 0, itemCategoryName: itemCategoryName))
+                                let itemCategoryName = json["Result"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
+                                let externalItemId = json["Result"][i]["ItemVariations"][0]["ExternalItemId"].string ?? ""
+                                foodItems.append(FoodItem(name: name, price: price ?? 0, itemCategoryName: itemCategoryName, externalItemId: externalItemId))
                             }
                             completion(foodItems)
                         } catch{
@@ -156,3 +170,39 @@ func getItems(restaurant: Restaurant, completion: @escaping ([FoodItem]) -> ()) 
         dataTask.resume()
 }
 
+
+func sendOrder(items: [FoodItem], restaurant: Restaurant, date: Date, partySize: Int) {
+    let headers = [
+        "Content-Type":"application/json",
+        "Accept":"application/json",
+        "Authorization":bearerToken
+    ]
+    var items2:[Any] = []
+    for i in 0..<(items.count) {
+        items2.append(["ExternalItemId": items[i].externalItemId, "ItemName":items[i].name, "Quantity":1, "UnitPrice":items[i].price, "UnitSellPrice":items[i].price, "ExtendedSellPrice":items[i].price])
+        print(items2[0])
+    }
+    //let itemsFixedJson = JSON(itemsFixed)
+
+    let json: [String:Any] =  ["Orders": [["IsClosed": true,"OrderDateTime": Date().description,"OrderDueDateTime": date.description,"IsPaid": true,"Customer": ["CustomerId": 0,"CustomerName": "Daniel","Email": "abcde@email.com","PhoneNumber": "6782235758","Address1": "Address1","Address2": "string","Address3": "string","City": "string","State": "string","ZipCode": "string"],"CustomerId": 0,"CustomerName": "Daniel","TableReference": "Daniel","TaxAmount": 0,"TipAmount": 0,"LineItems": items2,"Notes": ["Daniel"],"KitchenLeadTimeInMinutes": 0,"SkipReceipt": true,"SkipKitchen": true]],"SourceApplicationName": "app"]
+    print(JSONSerialization.isValidJSONObject(json))
+    
+    
+    let jsonData = try? JSONSerialization.data(withJSONObject: json)
+    let url = URL(string: "https://api-reg-apigee.ncrsilverlab.com/v2/orders?store_number=1")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.allHTTPHeaderFields = headers
+    request.httpBody = jsonData
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        guard let data = data, error == nil else {
+            print(error?.localizedDescription ?? "No data")
+            return
+        }
+        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+        if let responseJSON = responseJSON as? [String: Any] {
+            print(responseJSON)
+        }
+    }
+    task.resume()
+}
