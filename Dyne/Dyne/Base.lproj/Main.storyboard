@@ -18,30 +18,25 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nfy-6h-Hnd">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="5SU-WT-l5Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="restaurantCell" rowHeight="70" id="pRX-t1-G96" customClass="RestaurantCell" customModule="Dyne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="70"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="restaurantCell" rowHeight="186" id="pRX-t1-G96" customClass="RestaurantCell" customModule="Dyne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="186"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pRX-t1-G96" id="Ak3-tu-8Mj">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="186"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="VnD-cZ-3Ob">
-                                                    <rect key="frame" x="20" y="11" width="217.5" height="45.5"/>
+                                                    <rect key="frame" x="20" y="128" width="217.5" height="44.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Satto Thai and Sushi Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rK8-rJ-zdF">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Satto Thai and Sushi Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rK8-rJ-zdF">
                                                             <rect key="frame" x="0.0" y="0.0" width="217.5" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum wait: 20 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEf-kh-LCm">
-                                                            <rect key="frame" x="0.0" y="25" width="167" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Minimum wait: 20 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEf-kh-LCm">
+                                                            <rect key="frame" x="0.0" y="25" width="167" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -49,7 +44,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5bQ-O6-Aja">
-                                                    <rect key="frame" x="313.5" y="14" width="80.5" height="43"/>
+                                                    <rect key="frame" x="313.5" y="130" width="80.5" height="43"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.4/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7Z-rb-zaK">
                                                             <rect key="frame" x="20" y="0.0" width="40.5" height="20.5"/>
@@ -65,20 +60,29 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QeK-hx-GtL">
+                                                    <rect key="frame" x="27" y="11" width="360" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="AQK-xI-ias"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="5bQ-O6-Aja" firstAttribute="top" secondItem="Ak3-tu-8Mj" secondAttribute="topMargin" constant="3" id="IZE-rX-GEV"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="QeK-hx-GtL" secondAttribute="trailing" constant="7" id="GfB-gZ-6IJ"/>
+                                                <constraint firstItem="QeK-hx-GtL" firstAttribute="top" secondItem="Ak3-tu-8Mj" secondAttribute="topMargin" id="KgP-aX-sgy"/>
+                                                <constraint firstItem="QeK-hx-GtL" firstAttribute="leading" secondItem="Ak3-tu-8Mj" secondAttribute="leadingMargin" constant="7" id="SqQ-wy-R2d"/>
                                                 <constraint firstItem="VnD-cZ-3Ob" firstAttribute="leading" secondItem="Ak3-tu-8Mj" secondAttribute="leadingMargin" id="aIN-zr-adH"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="VnD-cZ-3Ob" secondAttribute="bottom" constant="2.5" id="c3y-fG-D8p"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="5bQ-O6-Aja" secondAttribute="bottom" constant="2" id="jYF-Xy-NKQ"/>
-                                                <constraint firstItem="VnD-cZ-3Ob" firstAttribute="top" secondItem="Ak3-tu-8Mj" secondAttribute="topMargin" id="kGe-eM-RSf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="5bQ-O6-Aja" secondAttribute="trailing" id="soh-k9-Mlg"/>
+                                                <constraint firstItem="VnD-cZ-3Ob" firstAttribute="top" secondItem="QeK-hx-GtL" secondAttribute="bottom" constant="17" id="x17-db-o1t"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="minWaitLabel" destination="WEf-kh-LCm" id="ity-A1-dUQ"/>
                                             <outlet property="openLabel" destination="moK-AY-khs" id="LCJ-hJ-5lt"/>
                                             <outlet property="ratingsLabel" destination="d7Z-rb-zaK" id="6hm-CH-d4U"/>
+                                            <outlet property="restaurantImage" destination="QeK-hx-GtL" id="gWg-wS-VNe"/>
                                             <outlet property="restaurantNameLabel" destination="rK8-rJ-zdF" id="D6a-vH-7ch"/>
                                         </connections>
                                     </tableViewCell>

@@ -14,6 +14,7 @@ class RestaurantCell: UITableViewCell {
     @IBOutlet weak var minWaitLabel: UILabel!
     @IBOutlet weak var openLabel: UILabel!
     @IBOutlet weak var ratingsLabel: UILabel!
+    @IBOutlet weak var restaurantImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,11 +26,12 @@ class RestaurantCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setUpCell(restaurantName: String, minWait: Int, open: String, ratings: Double) {
+    func setUpCell(restaurantName: String, minWait: Int, open: String, ratings: Double, image: UIImage) {
         restaurantNameLabel.text = restaurantName
         minWaitLabel.text = "Minimum wait time: \(minWait)"
         openLabel.text = open
         ratingsLabel.text = "\(ratings) ⭐️"
+        restaurantImage.image = image
         
     }
 

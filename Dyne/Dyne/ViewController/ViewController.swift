@@ -11,10 +11,11 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var restaurantTable: UITableView!
-    
+
     
     var restaurants: [Restaurant]?
-    
+    var images: [UIImage] = [UIImage]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -25,6 +26,9 @@ class ViewController: UIViewController {
         restaurantTable.dataSource = self
         
         getRestaurants()
+        
+        
+        
 
     }
     
@@ -37,12 +41,43 @@ class ViewController: UIViewController {
         
         getNearbyRestaurants { (restaurants) in
             self.restaurants = restaurants
-            DispatchQueue.main.async {
-                self.restaurantTable.reloadData()
+            for restaurant in restaurants {
+                let url = URL(string: restaurant.imageLink)
+                self.downloadImage(from: url ?? URL(string: "https://thenypost.files.wordpress.com/2019/09/junk-food-turns-kid-blind.jpg?quality=90&strip=all&w=1236&h=820&crop=1")!) { (image) in
+                    if let img = image {
+                        self.images.append(img)
+                        DispatchQueue.main.async {
+                            if (self.images.count == restaurants.count) {
+                                self.restaurantTable.reloadData()
+                            }
+                        }
+                    }
+                    
+                    
+                }
+                
             }
+            
         }
         
         
+    }
+    
+    //Image downloading
+    
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func downloadImage(from url: URL, completion: @escaping (UIImage?)->()) {
+        print("Download Started")
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            completion(UIImage(data: data))
+            
+        }
     }
 
 
@@ -58,7 +93,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         if let restaurant = restaurants?[indexPath.row] {
-            cell.setUpCell(restaurantName: restaurant.name, minWait: restaurant.wait, open: "Open Now", ratings: floor(Double.random(in: 3 ..< 5) * 10) / 10)
+            cell.setUpCell(restaurantName: restaurant.name, minWait: restaurant.wait, open: "Open Now", ratings: floor(Double.random(in: 3 ..< 5) * 10) / 10, image: images[indexPath.row])
         }
         
         return cell
@@ -69,11 +104,33 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if let restaurant = restaurants?[indexPath.row] {
             if let nav = self.navigationController {
                 RestaurantViewController.present(for: restaurant, in: nav)
-                }
             }
-            
         }
+        
+    }
         
     
     
+}
+
+
+extension UIImageView {
+    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() {
+                self.image = image
+            }
+        }.resume()
+    }
+    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url, contentMode: mode)
+    }
 }

@@ -51,7 +51,7 @@ func test() {
 }
 
 func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
-    let request = NSMutableURLRequest(url: NSURL(string: "https://gateway-staging.ncrcloud.com/site/sites/find-nearby/29.25,92?radius=1000000000&numSites=10&customAttributes=CREDENTIALS")! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+    let request = NSMutableURLRequest(url: NSURL(string: "https://gateway-staging.ncrcloud.com/site/sites/find-nearby/29.25,92?radius=1000000000&numSites=10&customAttributes=CREDENTIALS&customAttributes=IMAGE")! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
     request.httpMethod = "GET"
     request.allHTTPHeaderFields = headers
     let session = URLSession.shared
@@ -80,10 +80,12 @@ func getNearbyRestaurants(completion: @escaping ([Restaurant]) -> ()) {
                         let closeHour = 12
                         let rating = 0
                         let wait = 20
-                        let clientId = json["sites"][i]["customAttributeSets"]["attributes"][0]["value"].string ?? ""
-                        let clientSecret = json["sites"][i]["customAttributeSets"]["attributes"][1]["value"].string ?? ""
+                        let clientId = json["sites"][i]["customAttributeSets"][1]["attributes"][0]["value"].string ?? ""
+                        let clientSecret = json["sites"][i]["customAttributeSets"][1]["attributes"][1]["value"].string ?? ""
+                        var imageLink = json["sites"][i]["customAttributeSets"][0]["attributes"][0]["value"].string ?? ""
                         
-                        restaurants.append(Restaurant(name: name, location: location, openHour: openHour, closeHour: closeHour, wait: wait, clientId: clientId, clientSecret: clientSecret))
+                        //imageLink = imageLink.replacingOccurrences(of: "\\", with: "/")
+                        restaurants.append(Restaurant(name: name, location: location, openHour: openHour, closeHour: closeHour, wait: wait, clientId: clientId, clientSecret: clientSecret, imageLink: imageLink))
                         
             
                     }
