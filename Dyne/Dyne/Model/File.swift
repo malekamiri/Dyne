@@ -185,7 +185,7 @@ func sendOrder(items: [FoodItem], restaurant: Restaurant, date: String, userName
     }
     //let itemsFixedJson = JSON(itemsFixed)
 
-    let json: [String:Any] =  ["Orders": [["IsClosed": true,"OrderDateTime": Date().description,"OrderDueDateTime": date,"IsPaid": true,"Customer": ["CustomerId": 0,"CustomerName": userName,"Email": "abcde@email.com","PhoneNumber": "6782235758","Address1": "Address1","Address2": "string","Address3": "string","City": "string","State": "string","ZipCode": "string"],"CustomerId": 0,"CustomerName": userName,"TableReference": userName,"TaxAmount": 0,"TipAmount": 0,"LineItems": items2,"Notes": ["Dyne In\nParty Size: \(partySize)"],"KitchenLeadTimeInMinutes": 0,"SkipReceipt": true,"SkipKitchen": true]],"SourceApplicationName": "app"]
+    let json: [String:Any] =  ["Orders": [["IsClosed": true,"OrderDateTime": date,"OrderDueDateTime": date,"IsPaid": true,"Customer": ["CustomerId": 0,"CustomerName": userName,"Email": "abcde@email.com","PhoneNumber": "6782235758","Address1": "Address1","Address2": "string","Address3": "string","City": "string","State": "string","ZipCode": "string"],"CustomerId": 0,"CustomerName": userName,"TableReference": userName,"TaxAmount": 0,"TipAmount": 0,"LineItems": items2,"Notes": ["Dyne In\nParty Size: \(partySize)"],"KitchenLeadTimeInMinutes": 0,"SkipReceipt": true,"SkipKitchen": true]],"SourceApplicationName": "app"]
     print(JSONSerialization.isValidJSONObject(json))
     
     
